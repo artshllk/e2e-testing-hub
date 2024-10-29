@@ -1,12 +1,20 @@
+import { articles } from "@/pages";
 import "@/styles/globals.css";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function CypressVsPlaywright() {
   return (
-    <div className="flex flex-col items-center pt-10 px-4 md:px-20 text-white">
-      <h1 className="text-4xl font-bold mb-8">Cypress vs Playwright</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen pt-10 px-4 md:px-20 text-white">
+      <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl">
+        <h1 className="text-3xl md:text-4xl font-bold text-white">
+          {articles[0].name}
+        </h1>
+        <p className="text-gray-300 text-sm mt-2">{articles[0].date}</p>
+      </div>
 
       {/* Article Content */}
-      <div className="max-w-2xl font-normal text-base leading-[28px] text-white-88">
+      <div className="max-w-lg md:max-w-2xl font-normal text-[1rem] md:text-[1.1rem] leading-[26px] md:leading-[28px] text-white-88">
         <p className="mb-6 ">
           When I first started my journey in test automation, my toolset
           primarily was only Cypress. I started by writing very basic simple
@@ -24,7 +32,7 @@ export default function CypressVsPlaywright() {
           because it depends on the project needs.
         </p>
 
-        <h2 className="text-3xl font-bold mb-4">Cypress</h2>
+        <h2 className="text-3xl md:text-3xl font-bold mb-4">Cypress</h2>
         <p className="mb-6">
           Cypress is an end-to-end testing framework designed to make testing
           modern web applications easier and more reliable. It allows developers
@@ -101,58 +109,115 @@ export default function CypressVsPlaywright() {
 
           <li>
             <strong>Debugging and Test Writing:</strong> Cypress allows you to
-            view snapshots at each step, making debugging easier. Playwright,
-            however, provides better debugging for complex cases.
+            view snapshots at each step, making debugging easier. Playwright
+            provides better debugging for complex cases.
           </li>
 
           <li>
             <strong>Community:</strong> Cypress has a larger community, making
-            it easier to find solutions. Playwright's community is growing, but
-            it's newer in comparison.
+            it easier to find solutions. Playwright's community is growing but
+            newer in comparison.
           </li>
 
           <li>
             <strong>Test Isolation:</strong> Playwright provides better test
-            isolation, while Cypress requires more effort to manage shared state
+            isolation while Cypress requires more effort to manage shared state
             between tests.
           </li>
 
           <li>
             <strong>CI/CD Integration:</strong> Both tools integrate well into
-            CI/CD pipelines, but Playwright's cross-browser support makes it
-            more flexible for larger test suites.
+            CI/CD pipelines but Playwright's cross-browser support makes it more
+            flexible for larger test suites.
           </li>
         </ol>
 
-        <h2 className="text-3xl font-bold mb-4">Which is Faster?</h2>
+        {/* Performance Comparison Section */}
+        <h2 className="text-3xl font-bold mb-4">Performance Comparison</h2>
         <p className="mb-6">
-          Playwright and Cypress both offer fast test execution, but their speed
-          depends on factors like test complexity and environment. Playwright
-          supports parallel testing across multiple browsers, which can speed up
-          cross-browser tests. Cypress focuses on real-time reloading for faster
-          debugging but mainly supports Chromium-based browsers.
+          Here’s a brief comparison of performance metrics between Cypress and
+          Playwright:
         </p>
 
-        <p className="mb-6">
-          Also, Playwright selectors are really powerful. In Cypress, developers
-          sometimes have to chain complex selectors, like{" "}
-          <pre className="bg-gray-800 p-4 rounded-md">
-            <code className="text-white font-mono">
-              cy.get("table-selector").within(() ={">"}` cy.get("tab-selector"))
-            </code>
-          </pre>
-          . In Playwright, it's much easier with commands like{" "}
-          <code>page.getByTestId("")</code> or other simple selector methods.
+        <table className="min-w-full bg-gray-900 mb-5 rounded-md overflow-hidden">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 text-left">Metric</th>
+              <th className="py-2 px-4 text-left">Cypress</th>
+              <th className="py-2 px-4 text-left">Playwright</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="py-2 px-4">Installation Speed</td>
+              <td className="py-2 px-4">Slower due to bundled browsers</td>
+              <td className="py-2 px-4">
+                Faster; allows selective installation
+              </td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4">Run Time for UI Tests</td>
+              <td className="py-2 px-4">Generally slower in larger suites</td>
+              <td className="py-2 px-4">
+                Faster; optimized for parallel execution
+              </td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4">API Testing Speed</td>
+              <td className="py-2 px-4">Requires browser context</td>
+              <td className="py-2 px-4">
+                Direct API calls without browser overhead
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* Sample Test Case Section */}
+        <h2 className="text-3xl font-bold mb-4">Sample Test Case</h2>
+        <p className="mb-4">
+          Below are examples of a simple login test case written in both Cypress
+          and Playwright to illustrate syntax differences:
         </p>
 
-        <p className="mb-6">
-          In Cypress, many developers use <code>cy.wait()</code>, but this can
-          lead to flaky tests. Playwright uses modern JavaScript syntax like
-          async/await and built-in mechanisms such as{" "}
-          <code>waitForSelector</code> and <code>waitForNavigation</code>,
-          making tests more stable.
-        </p>
+        {/* Cypress Example */}
+        <h3 className="text-lg md:text-xl font-semibold mb-2">
+          Cypress Example:
+        </h3>
+        <SyntaxHighlighter
+          language="javascript"
+          style={oneDark}
+          className="mb-6 rounded-md overflow-auto syntax-highlighter"
+        >
+          {`describe('Login Test', () => {
+  it('should log in with valid credentials', () => {
+    cy.visit('https://example.com/login');
+    cy.get('input[name="username"]').type('user');
+    cy.get('input[name="password"]').type('pass');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/dashboard');
+  });
+});`}
+        </SyntaxHighlighter>
 
+        {/* Playwright Example */}
+        <h3 className="text-xl font-semibold mb-2">Playwright Example:</h3>
+        <SyntaxHighlighter
+          language="javascript"
+          style={oneDark}
+          className="mb-6 rounded-md overflow-auto syntax-highlighter"
+        >
+          {`const { test, expect } = require('@playwright/test');
+
+test('Login Test', async ({ page }) => {
+  await page.goto('https://example.com/login');
+  await page.fill('input[name="username"]', 'user');
+  await page.fill('input[name="password"]', 'pass');
+  await page.click('button[type="submit"]');
+  await expect(page).toHaveURL(/.*\\/dashboard/);
+});`}
+        </SyntaxHighlighter>
+
+        {/* Conclusion Section */}
         <h2 className="text-3xl font-bold mb-4">Conclusion</h2>
         <p className="mb-6">
           Both tools are powerful, and the choice often depends on specific

@@ -7,3 +7,16 @@ body {
   @apply bg-black min-h-screen;
   font-family: "Merriweather", sans-serif;
 }
+
+.syntax-highlighter {
+  max-width: 100%; /* Ensure it doesn’t exceed screen width */
+  overflow-x: auto; /* Allow horizontal scroll */
+  font-size: 0.85rem; /* Reduce font size on smaller screens */
+}
+
+/* Media query to adjust font-size for smaller screens */
+@media (max-width: 768px) {
+  .syntax-highlighter {
+    font-size: 0.75rem;
+  }
+}
