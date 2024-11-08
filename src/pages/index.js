@@ -1,3 +1,4 @@
+import Header from "@/components/containers/Header";
 import Link from "next/link";
 
 export const articles = [
@@ -18,18 +19,21 @@ export const articles = [
 export default function Home() {
   return (
     <>
-      <div className="flex justify-center mt-12 w-70">
-        <div className="flex flex-col space-y-8 m-6">
+      <div className="flex justify-center items-center bg-slate-800 py-12">
+        <div className="flex flex-col max-w-2xl w-full px-4">
           {articles.map((article) => (
-            <div key={article.id}>
+            <div
+              key={article.id}
+              className="bg-gray-900 rounded-lg mt-3 shadow-lg p-6 hover:shadow-xl transition-shadow"
+            >
               <Link
                 href="/cypressvsplaywright"
-                className="block text-3xl font-bold text-red-400 hover:text-red-500 transition-all"
+                className="block text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500"
               >
                 {article.name}
               </Link>
-              <p className="text-gray-400 text-sm mt-1">{article.date}</p>
-              <p className="text-gray-300 text-lg w-[100%]">
+              <p className="text-gray-500 text-sm mt-1">{article.date}</p>
+              <p className="text-gray-400 text-lg mt-2">
                 {article.description}
               </p>
             </div>

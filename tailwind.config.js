@@ -12,6 +12,9 @@ module.exports = {
         foreground: "var(--foreground)",
         "white-88": "rgba(255, 255, 255, 0.88)",
       },
+      fontFamily: {
+        sans: ["Montserrat", "sans-serif"],
+      },
     },
   },
   plugins: [],

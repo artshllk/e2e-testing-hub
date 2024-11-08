@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
 
 body {
   @apply bg-black min-h-screen;
@@ -9,14 +10,23 @@ body {
 }
 
 .syntax-highlighter {
-  max-width: 100%; /* Ensure it doesn’t exceed screen width */
-  overflow-x: auto; /* Allow horizontal scroll */
-  font-size: 0.85rem; /* Reduce font size on smaller screens */
+  max-width: 100%;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  padding: 0.5rem;
 }
 
-/* Media query to adjust font-size for smaller screens */
+code {
+  background-color: #374151;
+  color: #e5e7eb;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: "Courier New", monospace;
+}
+
 @media (max-width: 768px) {
   .syntax-highlighter {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
+    padding: 0.5rem;
   }
 }
