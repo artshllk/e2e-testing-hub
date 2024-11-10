@@ -6,16 +6,18 @@ import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function CypressVsPlaywright() {
   return (
-    <div className="flex flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-white">
+    <div className="flex flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
       <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl">
-        <h1 className="text-3xl md:text-4xl font-bold text-white">
+        <h1 className="text-4xl md:text-5xl font-extrabold">
           {articles[0].name}
         </h1>
-        <p className="text-gray-300 text-sm mt-2">{articles[0].date}</p>
+        <p className="text-gray-400 text-sm mt-2 font-serif">
+          {articles[0].date}
+        </p>
       </div>
 
       {/* Article Content */}
-      <div className="max-w-lg md:max-w-2xl font-normal text-[1rem] md:text-[1.1rem] leading-[26px] md:leading-[28px] text-white-88">
+      <div className="max-w-lg md:max-w-2xl font-medium text-[1rem] md:text-[1.1rem] leading-[26px] md:leading-[28px] text-white-88">
         <p className="mb-6 ">
           When I first started my journey in test automation, my toolset
           primarily was only Cypress. I started by writing very basic simple
@@ -31,7 +33,10 @@ export default function CypressVsPlaywright() {
           The idea of this article is not to explore which of these is better
           because it depends on the project needs.
         </p>
-        <h2 className="text-3xl md:text-3xl font-bold mb-4">Cypress</h2>
+
+        <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
+
+        <h2 className="text-3xl md:text-3xl font-extrabold mb-4">Cypress</h2>
         <p className="mb-6">
           Cypress is an end-to-end testing framework designed to make testing
           modern web applications easier and more reliable. It allows developers
@@ -41,7 +46,7 @@ export default function CypressVsPlaywright() {
           testing front-end behavior, but it is limited to the browser
           environment (we will talk more about that later).
         </p>
-        <h2 className="text-3xl font-bold mb-4">Playwright</h2>
+        <h2 className="text-3xl font-extrabold mb-4 mt-10">Playwright</h2>
         <p className="mb-6">
           Playwright is an open-source testing framework developed by Microsoft
           that allows automated testing of web applications across multiple
@@ -59,9 +64,8 @@ export default function CypressVsPlaywright() {
           documentation and writing many tests in both, I decided to write this
           article to cover key differences between them. I like both tools :)
         </p>
-        <h2 className="text-3xl font-bold mb-4">
-          Cypress vs Playwright: Key Differences
-        </h2>
+        <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
+        <h2 className="text-3xl font-extrabold mb-4">Key Differences</h2>
         <p className="mb-6">
           They are both popular tools for end-to-end testing, but they differ in
           terms of functionality, flexibility, and the use cases they support.
@@ -127,9 +131,11 @@ export default function CypressVsPlaywright() {
           </li>
         </ol>
 
+        <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
+
         {/* Debugging  */}
 
-        <h2 className="text-3xl font-bold mb-4">Debugging</h2>
+        <h2 className="text-3xl font-extrabold mb-4">Debugging</h2>
         <p className="mb-6">
           Debugging in Cypress and Playwright offers different approaches. In
           Cypress, you’re limited to using <code className="">.pause()</code> or
@@ -176,12 +182,14 @@ export default function CypressVsPlaywright() {
           selectors in real-time while the test is paused.
         </p>
 
+        <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
+
         {/* Nested selectors comparison */}
 
-        <h2 className="text-3xl font-bold mb-4">
-          Powerful Nested Selectors in Cypress vs. Playwright
+        <h2 className="text-3xl font-extrabold mb-4">
+          Powerful Nested Selectors
         </h2>
-        <p className="mb-6">
+        <p className="mb-2">
           One area where Cypress excels is handling deeply nested selectors.
           Using
           <code>cy.within()</code>, Cypress lets you easily scope commands to a
@@ -200,7 +208,7 @@ export default function CypressVsPlaywright() {
 });`}
         </SyntaxHighlighter>
 
-        <p className="mb-6">
+        <p className="mb-2">
           Cypress’s <code>cy.within()</code> method allows you to scope commands
           to a specific container, creating more readable, maintainable tests.
           Playwright, however, requires separate <code>locator</code> calls,
@@ -226,8 +234,10 @@ await nestedContainer.locator('.target-element').isVisible();`}
           experience by keeping everything neatly scoped within a single chain.
         </p>
 
+        <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
+
         {/* Performance Comparison Section */}
-        <h2 className="text-3xl font-bold mb-4">Performance Comparison</h2>
+        <h2 className="text-3xl font-extrabold mb-4">Performance Comparison</h2>
         <p className="mb-6">
           Here’s a brief comparison of performance metrics between Cypress and
           Playwright:
@@ -265,8 +275,10 @@ await nestedContainer.locator('.target-element').isVisible();`}
           </tbody>
         </table>
 
+        <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
+
         {/* Conclusion Section */}
-        <h2 className="text-3xl font-bold mb-4">Conclusion</h2>
+        <h2 className="text-3xl font-extrabold mb-4">Conclusion</h2>
         <p className="mb-6">
           Both tools are powerful, and the choice often depends on specific
           project needs. Cypress is ideal for simple to moderately complex web

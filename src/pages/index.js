@@ -24,15 +24,17 @@ export default function Home() {
           {articles.map((article) => (
             <div
               key={article.id}
-              className="bg-gray-900 rounded-lg mt-3 shadow-lg p-6 hover:shadow-xl transition-shadow"
+              className="bg-gray-900 rounded-lg mt-3 shadow-lg p-6"
             >
               <Link
                 href="/cypressvsplaywright"
-                className="block text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500"
+                className="block text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500"
               >
                 {article.name}
               </Link>
-              <p className="text-gray-500 text-sm mt-1">{article.date}</p>
+              <p className="text-gray-500 font-serif text-sm mt-1">
+                {article.date}
+              </p>
               <p className="text-gray-400 text-lg mt-2">
                 {article.description}
               </p>

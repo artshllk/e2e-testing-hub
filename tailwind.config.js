@@ -10,7 +10,8 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "white-88": "rgba(255, 255, 255, 0.88)",
+        "white-88": "rgba(255, 255, 255, 0.80)",
+        customLightGray: "#F8F8F8",
       },
       fontFamily: {
         sans: ["Montserrat", "sans-serif"],
