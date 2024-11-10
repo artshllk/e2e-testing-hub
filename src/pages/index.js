@@ -6,13 +6,13 @@ export const articles = [
     id: 1,
     name: "Cypress vs Playwright",
     date: "October 27, 2024",
-    description: "Comparing the leading e2e testing frameworks.",
+    description: "Comparing the leading e2e testing frameworks",
   },
   {
     id: 2,
-    name: "Best e2e practices",
-    date: "September 12, 2024",
-    description: "Essential practices for effective end-to-end testing.",
+    name: "Should Tests Be WET or DRY?",
+    date: "Novemeber 10, 2024",
+    description: "Finding the Right Balance",
   },
 ];
 
