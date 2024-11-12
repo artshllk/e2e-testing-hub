@@ -4,12 +4,14 @@ import Link from "next/link";
 export const articles = [
   {
     id: 1,
+    path: "/cypressvsplaywright",
     name: "Cypress vs Playwright",
     date: "October 27, 2024",
     description: "Comparing the leading e2e testing frameworks",
   },
   {
     id: 2,
+    path: "/wetvsdry",
     name: "Should Tests Be WET or DRY?",
     date: "Novemeber 10, 2024",
     description: "Finding the Right Balance",
@@ -27,7 +29,7 @@ export default function Home() {
               className="bg-gray-900 rounded-lg mt-3 shadow-lg p-6"
             >
               <Link
-                href="/cypressvsplaywright"
+                href={article.path}
                 className="block text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500"
               >
                 {article.name}
