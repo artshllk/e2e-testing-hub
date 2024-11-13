@@ -16,6 +16,14 @@ export const articles = [
     date: "Novemeber 10, 2024",
     description: "Finding the Right Balance",
   },
+  {
+    id: 3,
+    path: "/beste2epractices",
+    name: "Best E2E Automation Testing Practices",
+    date: "November 14, 2024",
+    description:
+      "Advanced strategies to improve test stability and reduce flakiness",
+  },
 ];
 
 export default function Home() {

@@ -2,6 +2,7 @@ import { articles } from "@/pages";
 import "@/styles/globals.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { FaLightbulb } from "react-icons/fa";
 
 export default function WetVsDry() {
   return (
@@ -12,7 +13,7 @@ export default function WetVsDry() {
           {articles[1].name}
         </h1>
         <p className="text-gray-400 text-sm mt-2 font-serif">
-          November 10, 2024
+          {articles[1].date}
         </p>
       </div>
 
@@ -24,11 +25,17 @@ export default function WetVsDry() {
             WET (Write Everything Twice) and DRY (Don’t Repeat Yourself).
           </p>
 
-          <p className="mt-2 mb-4">
+          <p
+            className="bg-indigo-200 p-4 rounded-md shadow-2xl font-semibold text-indigo-900 mt-6"
+            style={{
+              boxShadow: "5px 10px 10px rgba(75, 85, 99, 0.5)",
+            }}
+          >
+            <FaLightbulb className="inline-block mr-2 text-indigo-600" />
             Understanding the difference between WET and DRY testing is crucial
             because I've often seen how quickly things can become difficult to
             manage. When tests aren't structured thoughtfully from the start, it
-            can be challenging and time-consuming to refactor them later on
+            can be challenging and time-consuming to refactor them later on.
           </p>
 
           <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
@@ -57,13 +64,11 @@ export default function WetVsDry() {
             </li>
           </ul>
 
-          <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
-
           <h3 className="text-xl font-semibold mt-6">Example:</h3>
           <SyntaxHighlighter
             language="javascript"
             style={oneDark}
-            className="mb-6 rounded-md overflow-auto syntax-highlighter"
+            className="mb-6 rounded-md text-sm shadow-md overflow-auto syntax-highlighter"
           >
             {`describe('Login Tests - WET', () => {
   test('should allow user to login with valid credentials', async () => {
@@ -88,6 +93,8 @@ export default function WetVsDry() {
             In this WET test, the code for filling out the login form and
             clicking the submit button is repeated in both test cases.
           </p>
+
+          <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
           <h2 className="text-3xl font-extrabold mt-6 mb-2">DRY Tests</h2>
           <p>
@@ -118,7 +125,7 @@ export default function WetVsDry() {
           <SyntaxHighlighter
             language="javascript"
             style={oneDark}
-            className="mb-6 rounded-md overflow-auto syntax-highlighter"
+            className="mb-6 rounded-md overflow-auto shadow-md syntax-highlighter"
           >
             {`describe('Login Tests - DRY', () => {
   const login = async (username, password) => {
