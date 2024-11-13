@@ -188,6 +188,8 @@ export default function WetVsDry() {
             </li>
           </ul>
 
+          <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
+
           <h2 className="text-3xl font-extrabold mt-7 mb-3">Conclusion</h2>
           <p>
             While the DRY principle is widely encouraged, it’s important to

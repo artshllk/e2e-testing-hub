@@ -21,8 +21,8 @@ export const articles = [
 export default function Home() {
   return (
     <>
-      <div className="flex justify-center items-center bg-slate-800 py-12">
-        <div className="flex flex-col max-w-2xl w-full px-4">
+      <div className="flex justify-center items-center bg-slate-800 py-14">
+        <div className="flex flex-col max-w-[44rem] w-full px-4">
           {articles.map((article) => (
             <div
               key={article.id}
