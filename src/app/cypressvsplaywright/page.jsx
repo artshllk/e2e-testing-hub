@@ -1,10 +1,144 @@
-import Header from "@/components/containers/Header";
+"use client";
 import { articles } from "@/pages";
 import "@/styles/globals.css";
+import { useEffect } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import {
+  Chart,
+  LineController,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+Chart.register(
+  LineController,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export default function CypressVsPlaywright() {
+  useEffect(() => {
+    const ctx = document.getElementById("myChart").getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: [
+          "Jan 2024",
+          "Feb 2024",
+          "Mar 2024",
+          "Apr 2024",
+          "May 2024",
+          "Jun 2024",
+          "Jul 2024",
+          "Aug 2024",
+          "Sep 2024",
+          "Oct 2024",
+        ],
+        datasets: [
+          {
+            label: "Cypress",
+            data: [
+              5387694, // Jan 2024
+              5641294, // Feb 2024
+              5077384, // Mar 2024
+              4952815, // Apr 2024
+              5262151, // May 2024
+              5026289, // Jun 2024
+              5217909, // Jul 2024
+              5341595, // Aug 2024
+              5347643, // Sep 2024
+              5522848, // Oct 2024
+            ],
+            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            fill: true,
+            tension: 0.3,
+          },
+          {
+            label: "Playwright",
+            data: [
+              4004551, // Jan 2024
+              4492069, // Feb 2024
+              4629823, // Mar 2024
+              4628390, // Apr 2024
+              5418408, // May 2024
+              5709472, // Jun 2024
+              6446085, // Jul 2024
+              6756287, // Aug 2024
+              7909955, // Sep 2024
+              10278986, // Oct 2024
+            ],
+            borderColor: "rgba(255, 159, 64, 1)",
+            backgroundColor: "rgba(255, 159, 64, 0.2)",
+            fill: true,
+            tension: 0.3,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "Downloads",
+              color: "#E5E7EB",
+              font: {
+                size: 16,
+                weight: "bold",
+              },
+            },
+            ticks: {
+              color: "#E5E7EB",
+              font: {
+                size: 12,
+              },
+            },
+          },
+          x: {
+            ticks: {
+              color: "#E5E7EB",
+              font: {
+                size: 12,
+              },
+            },
+          },
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: "Downloads in the Past Year for Cypress and Playwright",
+            color: "#BFDBFE",
+            font: {
+              size: 20,
+              weight: "bold",
+            },
+          },
+          legend: {
+            labels: {
+              color: "#E5E7EB",
+              font: {
+                size: 14,
+              },
+            },
+          },
+        },
+        responsive: true,
+      },
+    });
+  }, []);
+
   return (
     <div className="flex flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
       <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl">
@@ -60,10 +194,18 @@ export default function CypressVsPlaywright() {
           pretty easy to use. Later, in the company I joined after, Cypress was
           integrated with around 2000 tests. Playwright was not fully
           integrated, so I started learning and playing around with it because I
-          didn't have much experience working with it. After reading
-          documentation and writing many tests in both, I decided to write this
-          article to cover key differences between them. I like both tools :)
+          didn't have much experience working with it.
         </p>
+
+        <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
+
+        <canvas
+          id="myChart"
+          width="600"
+          height="400"
+          className="w-full max-w-lg md:max-w-2xl"
+        ></canvas>
+
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
         <h2 className="text-3xl font-extrabold mb-4">Key Differences</h2>
         <p className="mb-6">
