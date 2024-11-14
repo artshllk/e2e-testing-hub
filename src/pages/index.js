@@ -5,21 +5,21 @@ export const articles = [
     id: 1,
     path: "/cypressvsplaywright",
     name: "Cypress vs Playwright",
-    date: "October 27, 2024",
+    date: "October 1, 2024",
     description: "Comparing the leading e2e testing frameworks",
   },
   {
     id: 2,
     path: "/wetvsdry",
     name: "Should Tests Be WET or DRY?",
-    date: "Novemeber 10, 2024",
+    date: "October 23, 2024",
     description: "Finding the Right Balance",
   },
   {
     id: 3,
     path: "/beste2epractices",
     name: "Best E2E Automation Testing Practices",
-    date: "November 14, 2024",
+    date: "November 2, 2024",
     description:
       "Advanced strategies to improve test stability and reduce flakiness",
   },
@@ -33,11 +33,11 @@ export default function Home() {
           {articles.map((article) => (
             <div
               key={article.id}
-              className="bg-gray-900 rounded-lg mt-3 shadow-lg p-6"
+              className="bg-gray-900 rounded-lg mt-3 shadow-lg p-6 transition-transform transform hover:scale-105"
             >
               <Link
                 href={article.path}
-                className="block text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500"
+                className="block text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 hover:text-pink-300"
               >
                 {article.name}
               </Link>
