@@ -26,12 +26,12 @@ export default function WetVsDry() {
           </p>
 
           <p
-            className="bg-indigo-200 p-4 rounded-md shadow-2xl font-semibold text-indigo-900 mt-6"
+            className="bg-indigo-700/20 p-5 rounded-lg shadow-xl font-semibold text-indigo-300 mt-6 leading-relaxed"
             style={{
-              boxShadow: "5px 10px 10px rgba(75, 85, 99, 0.5)",
+              boxShadow: "3px 6px 12px rgba(45, 55, 72, 0.6)",
             }}
           >
-            <FaLightbulb className="inline-block mr-2 text-indigo-600" />
+            <FaLightbulb className="inline-block mr-2 text-yellow-400" />
             Understanding the difference between WET and DRY testing is crucial
             because I've often seen how quickly things can become difficult to
             manage. When tests aren't structured thoughtfully from the start, it

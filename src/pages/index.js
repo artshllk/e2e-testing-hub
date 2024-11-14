@@ -1,4 +1,3 @@
-import Header from "@/components/containers/Header";
 import Link from "next/link";
 
 export const articles = [
