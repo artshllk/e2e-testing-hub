@@ -6,7 +6,7 @@ import { FaLightbulb } from "react-icons/fa";
 
 export default function WetVsDry() {
   return (
-    <div className="flex flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
+    <div className="flex leading-relaxed flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
       {/* Header Section */}
       <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl">
         <h1 className="text-4xl md:text-5xl font-extrabold">
