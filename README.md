@@ -1,40 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Articles Website
 
-## Getting Started
+A simple **Next.js** website showcasing three articles about **end-to-end (E2E) testing**, with a modern, responsive design using **Tailwind CSS**.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Dynamic Articles List**: Displays a list of articles with titles, dates, descriptions, and links to full content.
+- **Responsive Design**: Fully optimized for both desktop and mobile devices using Tailwind CSS.
+- **Interactive Hover Effects**: Engaging hover effects on articles for better user interaction.
+- **Article Pages**: Each article has its own dedicated page for detailed reading.
+- **Syntax Highlighting**: Code snippets are rendered using `react-syntax-highlighter` with the **One Dark** theme.
+- **Icons**: Enhanced visuals with **React Icons** for better illustrations.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Articles Included
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+1. **[Cypress vs Playwright](./cypressvsplaywright)**  
+   _Date:_ October 1, 2024  
+   _Description:_ A comparison of the leading E2E testing frameworks.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+2. **[Should Tests Be WET or DRY?](./wetvsdry)**  
+   _Date:_ October 23, 2024  
+   _Description:_ Finding the right balance in writing automated tests.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+3. **[Best E2E Automation Testing Practices](./beste2epractices)**  
+   _Date:_ November 2, 2024  
+   _Description:_ Advanced strategies to improve test stability and reduce flakiness.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+- **[Next.js](https://nextjs.org/)**: Framework for server-rendered React applications.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS framework for styling.
+- **[React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter)**: Library for rendering code snippets.
+- **[React Icons](https://react-icons.github.io/react-icons/)**: For adding scalable vector icons to the website.
 
-To learn more about Next.js, take a look at the following resources:
+## Installation and Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+1. **Clone this repository**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
 
-## Deploy on Vercel
+2. **Install dependencies**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+3. **Run the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open the website**: Navigate to [http://localhost:3000](http://localhost:3000) to view the website.
+
+## Project Structure
+
+├── .github
+│ └── workflows
+│ └── nextjs.yml
+├── dist
+├── node_modules
+├── public
+├── src
+│ ├── app
+│ │ ├── beste2epractices
+│ │ │ └── page.jsx
+│ │ ├── cypressvsplaywright
+│ │ │ └── page.jsx
+│ │ ├── wetvsdry
+│ │ │ └── layout.js
+│ │ └── components
+│ │ ├── Footer.jsx
+│ │ └── Header.jsx
+│ │ └── pages
+│ │ ├── app.js
+│ │ ├── document.js
+│ │ └── index.js
+│ └── styles
+│ └── globals.css
+├── .gitignore
+└── jsconfig.json
+
+## Future Enhancements
+
+- Add more articles with **pagination support**.
+- Implement a **search functionality** for articles.
+- Add a **dark mode toggle** for improved user experience.
+
+## Contact
+
+Feel free to reach out if you have any questions or feedback:
+
+- **Art Shllaku**  
+  [GitHub](https://github.com/artshllk) | [LinkedIn](https://www.linkedin.com/in/art-shllaku/)
