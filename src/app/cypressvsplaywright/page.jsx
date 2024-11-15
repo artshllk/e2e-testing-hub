@@ -161,7 +161,7 @@ export default function CypressVsPlaywright() {
 
   return (
     <div className="flex flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
-      <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl">
+      <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl sm:m-3">
         <h1 className="text-4xl md:text-5xl font-extrabold">
           {articles[0].name}
         </h1>
@@ -172,7 +172,7 @@ export default function CypressVsPlaywright() {
 
       {/* Article Content */}
       <div className="max-w-lg md:max-w-2xl font-medium text-[1rem] md:text-[1.1rem] leading-[26px] md:leading-[28px]">
-        <p className="mb-6 ">
+        <p className="mb-6">
           When I first started my journey in test automation, my toolset
           primarily was only Cypress. I started by writing very basic simple
           tests without knowing best practices to writing really complex test
@@ -184,8 +184,10 @@ export default function CypressVsPlaywright() {
           in this world, from my perspective, Cypress is easier than Playwright.
         </p>
         <p className="mb-6">
-          The idea of this article is not to explore which of these is better
-          because it depends on the project needs.
+          In this article, we'll compare Cypress and Playwright, two popular
+          tools in end-to-end testing, by examining their key features, use
+          cases, and performance. This comparison will help you decide which
+          tool is the best fit for your testing needs
         </p>
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
