@@ -357,17 +357,19 @@ export default function CypressVsPlaywright() {
           specific element, making it easier to interact with complex layouts:
         </p>
 
-        <SyntaxHighlighter
-          language="javascript"
-          style={oneDark}
-          className="mb-6 rounded-md overflow-auto syntax-highlighter"
-        >
-          {`cy.get('.first-div').within(() => {
+        <div className="max-w-80 lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
+          <SyntaxHighlighter
+            language="javascript"
+            style={oneDark}
+            className="mb-6 rounded-md overflow-auto syntax-highlighter"
+          >
+            {`cy.get('.first-div').within(() => {
   cy.get('.second-div').within(() => {
     cy.get('.target-element').should('be.visible');
   });
 });`}
-        </SyntaxHighlighter>
+          </SyntaxHighlighter>
+        </div>
 
         <p className="mb-2">
           Cypress’s <code>cy.within()</code> method allows you to scope commands
@@ -377,15 +379,17 @@ export default function CypressVsPlaywright() {
           follow:
         </p>
 
-        <SyntaxHighlighter
-          language="javascript"
-          style={oneDark}
-          className="mb-6 rounded-md overflow-auto syntax-highlighter"
-        >
-          {`const container = await page.locator('.first-div');
+        <div className="max-w-80 lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
+          <SyntaxHighlighter
+            language="javascript"
+            style={oneDark}
+            className="mb-6 rounded-md overflow-auto syntax-highlighter"
+          >
+            {`const container = await page.locator('.first-div');
 const nestedContainer = await container.locator('.second-div');
 await nestedContainer.locator('.target-element').isVisible();`}
-        </SyntaxHighlighter>
+          </SyntaxHighlighter>
+        </div>
 
         <p className="mb-6">
           While Playwright's syntax is powerful, the lack of a direct equivalent

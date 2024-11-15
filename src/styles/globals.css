@@ -26,7 +26,7 @@ code {
 
 @media (max-width: 768px) {
   .syntax-highlighter {
-    font-size: 0.6rem;
+    font-size: 17px;
     padding: 0.5rem;
   }
 }
