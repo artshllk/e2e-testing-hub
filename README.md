@@ -13,15 +13,15 @@ A simple **Next.js** website showcasing three articles about **end-to-end (E2E) 
 
 ## Articles Included
 
-1. **[Cypress vs Playwright](./cypressvsplaywright)**  
+1. **[Cypress vs Playwright](https://artshllk.github.io/e2e-testing-hub/cypressvsplaywright)**  
    _Date:_ October 1, 2024  
    _Description:_ A comparison of the leading E2E testing frameworks.
 
-2. **[Should Tests Be WET or DRY?](./wetvsdry)**  
+2. **[Should Tests Be WET or DRY?](https://artshllk.github.io/e2e-testing-hub/wetvsdry)**  
    _Date:_ October 23, 2024  
    _Description:_ Finding the right balance in writing automated tests.
 
-3. **[Best E2E Automation Testing Practices](./beste2epractices)**  
+3. **[Best E2E Automation Testing Practices](https://artshllk.github.io/e2e-testing-hub/beste2epractices)**  
    _Date:_ November 2, 2024  
    _Description:_ Advanced strategies to improve test stability and reduce flakiness.
 
