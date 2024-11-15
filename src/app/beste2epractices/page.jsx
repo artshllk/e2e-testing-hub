@@ -6,9 +6,9 @@ import { FaBook, FaLightbulb, FaCheckCircle } from "react-icons/fa";
 
 export default function E2EPractices() {
   return (
-    <div className="flex leading-relaxed flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
-      <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold">
+    <div className="flex flex-col items-center min-h-screen pt-10 px-4 md:px-8 lg:px-20 text-customLightGray leading-relaxed">
+      <div className="text-left mb-8 w-full max-w-lg sm:max-w-xl md:max-w-2xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold">
           {articles[2].name}
         </h1>
         <p className="text-gray-400 text-sm mt-2 font-serif">

@@ -1,7 +1,7 @@
 "use client";
 import { articles } from "@/pages";
 import "@/styles/globals.css";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import {
@@ -28,9 +28,21 @@ Chart.register(
 );
 
 export default function CypressVsPlaywright() {
+  const [size, setSize] = useState(window.innerWidth);
+  const chartRef = useRef(null);
+
+  const handleResize = () => {
+    setSize(window.innerWidth);
+  };
+
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
-    new Chart(ctx, {
+
+    if (chartRef.current) {
+      chartRef.current.destroy();
+    }
+
+    chartRef.current = new Chart(ctx, {
       type: "line",
       data: {
         labels: [
@@ -137,10 +149,18 @@ export default function CypressVsPlaywright() {
         responsive: true,
       },
     });
-  }, []);
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
+    };
+  }, [size]);
 
   return (
-    <div className="flex leading-relaxed flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
+    <div className="flex flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
       <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl">
         <h1 className="text-4xl md:text-5xl font-extrabold">
           {articles[0].name}
@@ -151,7 +171,7 @@ export default function CypressVsPlaywright() {
       </div>
 
       {/* Article Content */}
-      <div className="max-w-lg md:max-w-2xl font-medium text-[1rem] md:text-[1.1rem] leading-[26px] md:leading-[28px] text-white-88">
+      <div className="max-w-lg md:max-w-2xl font-medium text-[1rem] md:text-[1.1rem] leading-[26px] md:leading-[28px]">
         <p className="mb-6 ">
           When I first started my journey in test automation, my toolset
           primarily was only Cypress. I started by writing very basic simple
@@ -199,12 +219,9 @@ export default function CypressVsPlaywright() {
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-        <canvas
-          id="myChart"
-          width="600"
-          height="400"
-          className="w-full max-w-lg md:max-w-2xl"
-        ></canvas>
+        <div className="relative w-full max-w-lg md:max-w-2xl h-[200px] sm:h-[300px] md:h-[400px]">
+          <canvas id="myChart"></canvas>
+        </div>
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
         <h2 className="text-3xl font-extrabold mb-4">Key Differences</h2>
