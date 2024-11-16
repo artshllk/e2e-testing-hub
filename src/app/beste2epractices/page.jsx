@@ -16,7 +16,7 @@ export default function E2EPractices() {
         </p>
       </div>
 
-      <div className="text-left w-full max-w-2xl">
+      <div className="text-left w-full max-w-2xl text-gray-300">
         <p className="text-lg mb-6">
           This article delves into advanced best practices for end-to-end (E2E)
           testing. I began my journey with limited knowledge in this area, but
@@ -68,7 +68,7 @@ export default function E2EPractices() {
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
         <div className="text-lg mb-6">
-          <h2 className="text-2xl font-semibold mb-4">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-200">
             When you start writing a test, it’s essential to have a clear
             purpose. Identify:
           </h2>
@@ -107,7 +107,9 @@ export default function E2EPractices() {
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-        <h2 className="text-2xl font-extrabold mt-8 mb-4">Examples:</h2>
+        <h2 className="text-2xl font-extrabold mt-8 mb-4 text-gray-200">
+          Examples:
+        </h2>
         <p className="text-lg mb-6">
           <strong>Well-defined Test Purpose:</strong> Test the login
           functionality with valid credentials and verify successful
@@ -118,7 +120,7 @@ export default function E2EPractices() {
           the goal is purely UI validation.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-200">
           Using TypeScript for Stronger Tests
         </h2>
         <p className="text-lg mb-6">
@@ -160,7 +162,7 @@ const login = ({ username, password }: UserCredentials) => {
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-200">
           Framework-Specific Syntax
         </h2>
         <p className="text-lg mb-6">
@@ -216,7 +218,7 @@ const login = ({ username, password }: UserCredentials) => {
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-200">
           Integrating E2E Tests with GitHub Actions
         </h2>
         <p className="text-lg mb-6">
@@ -280,7 +282,7 @@ jobs:
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-200">
           Reducing Flakiness with Reliable Test Patterns
         </h2>
         <p className="text-lg mb-6">

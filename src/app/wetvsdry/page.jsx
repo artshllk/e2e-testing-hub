@@ -18,7 +18,7 @@ export default function WetVsDry() {
       </div>
 
       {/* Article Content */}
-      <div className="text-left w-full max-w-lg md:max-w-2xl">
+      <div className="text-left w-full max-w-lg md:max-w-2xl text-gray-300">
         <div className="text-lg leading-relaxed mb-6">
           <p>
             When it comes to writing tests, you might hear two terms frequently:
@@ -40,7 +40,9 @@ export default function WetVsDry() {
 
           <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-          <h2 className="text-3xl font-extrabold mt-6 mb-2">WET Tests</h2>
+          <h2 className="text-3xl font-extrabold mt-6 mb-2 text-gray-200">
+            WET Tests
+          </h2>
           <p>
             WET testing refers to a testing style where some code repetition is
             allowed in the test cases. This is often seen as a trade-off for
@@ -96,7 +98,9 @@ export default function WetVsDry() {
 
           <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-          <h2 className="text-3xl font-extrabold mt-6 mb-2">DRY Tests</h2>
+          <h2 className="text-3xl font-extrabold mt-6 mb-2 text-gray-200">
+            DRY Tests
+          </h2>
           <p>
             DRY is a principle where you aim to avoid repeating code. In the
             context of tests, this means abstracting shared logic into reusable
@@ -161,7 +165,7 @@ export default function WetVsDry() {
 
           <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-          <h2 className="text-3xl font-extrabold mt-6 mb-2">
+          <h2 className="text-3xl font-extrabold mt-6 mb-2 text-gray-200">
             When to Use WET vs. DRY
           </h2>
           <p>
@@ -197,7 +201,9 @@ export default function WetVsDry() {
 
           <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-          <h2 className="text-3xl font-extrabold mt-7 mb-3">Conclusion</h2>
+          <h2 className="text-3xl font-extrabold mt-7 mb-3 text-gray-200">
+            Conclusion
+          </h2>
           <p>
             While the DRY principle is widely encouraged, it’s important to
             strike a balance between readability and maintainability. Sometimes,
