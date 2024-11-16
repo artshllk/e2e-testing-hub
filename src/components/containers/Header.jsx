@@ -1,6 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
+import getConfig from "next/config";
 
 export default function Header() {
+  const { publicRuntimeConfig } = getConfig();
+  const basePath = publicRuntimeConfig.basePath || "";
+
   return (
     <header className="flex justify-center p-3 pl-0 pr-0 bg-gray-900 shadow-md">
       <div className="flex flex-row justify-between md:flex-row md:justify-between items-center w-full max-w-2xl px-4 lg:px-0">
@@ -14,12 +19,12 @@ export default function Header() {
           <p className="bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text shadow-lg hover:shadow-xl font-medium transition duration-300">
             by
           </p>
-          <img
-            src="/photo.jpg"
+          <Image
+            src={`${basePath}/photo.jpg`}
             alt="photo"
             width={50}
             height={50}
-            className="rounded-full border-2 border-blue-500 transition duration-300 hover:scale-110"
+            className="rounded-full"
           />
         </div>
       </div>
