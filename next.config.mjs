@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "/e2e-testing-hub/",
+  basePath: "/e2e-testing-hub",
 };
 
 export default nextConfig;
