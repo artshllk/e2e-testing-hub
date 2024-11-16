@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
@@ -15,9 +14,9 @@ export default function Header() {
           <p className="bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text shadow-lg hover:shadow-xl font-medium transition duration-300">
             by
           </p>
-          <Image
+          <img
             src="/photo.jpg"
-            alt="Profile picture of Art Shllaku"
+            alt="photo"
             width={50}
             height={50}
             className="rounded-full border-2 border-blue-500 transition duration-300 hover:scale-110"
