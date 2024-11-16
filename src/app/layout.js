@@ -2,8 +2,7 @@ import Footer from "@/components/containers/Footer";
 import Header from "@/components/containers/Header";
 
 export const metadata = {
-  title: "Article",
-  description: "Article by ASH",
+  title: "automative",
 };
 
 export default function RootLayout({ children }) {
