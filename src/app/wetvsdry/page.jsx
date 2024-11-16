@@ -224,18 +224,18 @@ export default function WetVsDry() {
             Conclusion
           </h2>
           <p>
-            While the DRY principle is widely encouraged, it’s important to
-            strike a balance between readability and maintainability. Sometimes,
-            writing slightly repetitive tests (WET) can improve clarity,
-            especially when the tests are short and focused. However, for larger
-            and more complex test suites, adopting the DRY principle will lead
-            to cleaner, more maintainable code.
+            While the DRY principle is generally recommended, it's important to
+            balance readability and maintainability. In some cases, writing
+            slightly repetitive tests (WET) can enhance clarity, especially when
+            the tests are short and focused. However, for larger and more
+            complex test suites, applying DRY leads to cleaner, more
+            maintainable code.
           </p>
 
-          <p>
-            Ultimately, test clarity and maintainability should always be your
-            goal, so choose the approach that fits your project’s scale and
-            complexity.
+          <p className="mt-3">
+            Ultimately, the goal should be test clarity and maintainability, so
+            choose the approach that best suits your project's scale and
+            complexity
           </p>
         </div>
       </div>
