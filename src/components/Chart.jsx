@@ -39,7 +39,7 @@ export function DownloadsChart() {
     <Card className="bg-slate-800 text-white rounded-lg shadow-md p-6">
       <CardHeader>
         <CardTitle className="text-2xl font-semibold">
-          Testing Frameworks Downloads Comparison
+          Downloads Comparison
         </CardTitle>
         <CardDescription className="text-sm text-slate-400">
           Monthly downloads comparison between Cypress and Playwright (2024)

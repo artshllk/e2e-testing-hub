@@ -61,14 +61,13 @@ export default function CypressVsPlaywright() {
           WebKit, and Firefox. It's super easy to install.
         </p>
         <p className="mb-6 p-6 bg-slate-700/50 border-l-4 border-blue-500 rounded-lg shadow-lg text-lg font-medium text-gray-200">
-          During my time at both companies, I had the opportunity to explore and
-          develop strong skills in both Cypress and Playwright. In one company,
+          During my time at my previous roles, I had the chance to develop
+          strong skills in both Cypress and Playwright. In my first role,
           Cypress was already integrated with a few tests, and as a beginner, I
-          found it quite easy to use. Later, at the next company I joined,
-          Cypress had around 2000 tests integrated. While Playwright wasn’t
-          fully integrated, I took the initiative to start learning and
-          experimenting with it, as I didn’t have much prior experience working
-          with it.
+          found it easy to get started. Later, at my next company, Cypress had
+          around 2000 tests integrated. Although Playwright wasn’t fully
+          integrated at that point, I took the initiative to learn and
+          experiment with it, despite having limited prior experience.
         </p>
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
