@@ -1,168 +1,11 @@
 "use client";
 import { articles } from "@/pages";
 import "@/styles/globals.css";
-import { useEffect, useRef, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import {
-  Chart,
-  LineController,
-  LineElement,
-  PointElement,
-  CategoryScale,
-  LinearScale,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-Chart.register(
-  LineController,
-  LineElement,
-  PointElement,
-  CategoryScale,
-  LinearScale,
-  Title,
-  Tooltip,
-  Legend
-);
+import { DownloadsChart } from "../../components/Chart";
 
 export default function CypressVsPlaywright() {
-  const [size, setSize] = useState(0);
-  const chartRef = useRef(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setSize(window.innerWidth);
-
-      const handleResize = () => {
-        setSize(window.innerWidth);
-      };
-
-      window.addEventListener("resize", handleResize);
-
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && document.getElementById("myChart")) {
-      const ctx = document.getElementById("myChart").getContext("2d");
-
-      if (chartRef.current) {
-        chartRef.current.destroy();
-      }
-
-      chartRef.current = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: [
-            "Jan 2024",
-            "Feb 2024",
-            "Mar 2024",
-            "Apr 2024",
-            "May 2024",
-            "Jun 2024",
-            "Jul 2024",
-            "Aug 2024",
-            "Sep 2024",
-            "Oct 2024",
-          ],
-          datasets: [
-            {
-              label: "Cypress",
-              data: [
-                5387694, // Jan 2024
-                5641294, // Feb 2024
-                5077384, // Mar 2024
-                4952815, // Apr 2024
-                5262151, // May 2024
-                5026289, // Jun 2024
-                5217909, // Jul 2024
-                5341595, // Aug 2024
-                5347643, // Sep 2024
-                5522848, // Oct 2024
-              ],
-              borderColor: "rgba(54, 162, 235, 1)",
-              backgroundColor: "rgba(54, 162, 235, 0.2)",
-              fill: true,
-              tension: 0.3,
-            },
-            {
-              label: "Playwright",
-              data: [
-                4004551, // Jan 2024
-                4492069, // Feb 2024
-                4629823, // Mar 2024
-                4628390, // Apr 2024
-                5418408, // May 2024
-                5709472, // Jun 2024
-                6446085, // Jul 2024
-                6756287, // Aug 2024
-                7909955, // Sep 2024
-                10278986, // Oct 2024
-              ],
-              borderColor: "rgba(255, 159, 64, 1)",
-              backgroundColor: "rgba(255, 159, 64, 0.2)",
-              fill: true,
-              tension: 0.3,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: "Downloads",
-                color: "#E5E7EB",
-                font: {
-                  size: 16,
-                  weight: "bold",
-                },
-              },
-              ticks: {
-                color: "#E5E7EB",
-                font: {
-                  size: 12,
-                },
-              },
-            },
-            x: {
-              ticks: {
-                color: "#E5E7EB",
-                font: {
-                  size: 12,
-                },
-              },
-            },
-          },
-          plugins: {
-            title: {
-              display: true,
-              text: "Downloads in the Past Year for Cypress and Playwright",
-              color: "#BFDBFE",
-              font: {
-                size: 20,
-                weight: "bold",
-              },
-            },
-            legend: {
-              labels: {
-                color: "#E5E7EB",
-                font: {
-                  size: 14,
-                },
-              },
-            },
-          },
-          responsive: true,
-        },
-      });
-    }
-  }, [size]);
-
   return (
     <div className="flex flex-col items-center min-h-screen pt-10 px-4 md:px-20 text-customLightGray">
       <div className="text-left mb-8 w-full max-w-lg md:max-w-2xl sm:m-3">
@@ -225,8 +68,8 @@ export default function CypressVsPlaywright() {
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
-        <div className="relative w-full max-w-lg md:max-w-2xl h-[200px] sm:h-[300px] md:h-[400px]">
-          <canvas id="myChart"></canvas>
+        <div className="relative w-full max-w-full h-auto sm:h-[300px] md:h-[400px] lg:h-[500px]">
+          <DownloadsChart />
         </div>
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
@@ -368,10 +211,10 @@ export default function CypressVsPlaywright() {
             className="mb-6 rounded-md overflow-auto syntax-highlighter"
           >
             {`cy.get('.first-div').within(() => {
-  cy.get('.second-div').within(() => {
-    cy.get('.target-element').should('be.visible');
-  });
-});`}
+    cy.get('.second-div').within(() => {
+      cy.get('.target-element').should('be.visible');
+    });
+  });`}
           </SyntaxHighlighter>
         </div>
 
@@ -390,8 +233,8 @@ export default function CypressVsPlaywright() {
             className="mb-6 rounded-md overflow-auto syntax-highlighter"
           >
             {`const container = await page.locator('.first-div');
-const nestedContainer = await container.locator('.second-div');
-await nestedContainer.locator('.target-element').isVisible();`}
+  const nestedContainer = await container.locator('.second-div');
+  await nestedContainer.locator('.target-element').isVisible();`}
           </SyntaxHighlighter>
         </div>
 
