@@ -49,9 +49,15 @@ export function DownloadsChart() {
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart
             data={data}
-            margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+            margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
           >
-            <XAxis dataKey="month" stroke="hsl(0, 0%, 80%)" />
+            <XAxis
+              dataKey="month"
+              stroke="hsl(0, 0%, 80%)"
+              tick={{ fontSize: 12 }}
+              angle={-45}
+              textAnchor="end"
+            />
             <YAxis
               tickFormatter={(tick) => formatNumber(tick)}
               stroke="hsl(0, 0%, 80%)"
