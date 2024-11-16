@@ -3,9 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   output: "export",
   distDir: "dist",
-  images: {
-    unoptimized: false,
-  },
   basePath: "/e2e-testing-hub",
 };
 
