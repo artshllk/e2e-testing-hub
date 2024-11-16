@@ -4,7 +4,7 @@ const nextConfig = {
   output: "export",
   distDir: "dist",
   images: {
-    unoptimized: true,
+    unoptimized: false,
   },
   basePath: "/e2e-testing-hub",
 };
