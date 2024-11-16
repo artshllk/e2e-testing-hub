@@ -32,9 +32,9 @@ export default function CypressVsPlaywright() {
         </p>
         <p className="mb-6">
           In this article, we'll compare Cypress and Playwright, two popular
-          tools in end-to-end testing, by examining their key features, use
-          cases, and performance. This comparison will help you decide which
-          tool is the best fit for your testing needs
+          tools in e2e testing, by examining their key features, use cases, and
+          performance. This comparison will help you decide which tool is the
+          best fit for your testing needs.
         </p>
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
@@ -46,10 +46,10 @@ export default function CypressVsPlaywright() {
           Cypress is an end-to-end testing framework designed to make testing
           modern web applications easier and more reliable. It allows developers
           and testers to write tests that interact with a web application just
-          like a user would—by clicking buttons, entering text, navigating
-          pages, and more. Cypress is popular for testing SPAs and supports
-          testing front-end behavior, but it is limited to the browser
-          environment (we will talk more about that later).
+          like a user would, entering text, navigating pages, and more. Cypress
+          is popular for testing SPAs and supports testing front-end behavior,
+          but it is limited to the browser environment (we will talk more about
+          that later).
         </p>
         <h2 className="text-3xl font-extrabold mb-4 mt-10 text-gray-200">
           Playwright
@@ -60,14 +60,15 @@ export default function CypressVsPlaywright() {
           browsers. Playwright supports all modern engines including Chromium,
           WebKit, and Firefox. It's super easy to install.
         </p>
-        <p className="mb-6">
-          Now in both companies I've worked at, I had the luck to explore and
-          learn good skills in both Cypress and Playwright. In one company,
-          Cypress was already integrated with a few tests. As a beginner, it was
-          pretty easy to use. Later, in the company I joined after, Cypress was
-          integrated with around 2000 tests. Playwright was not fully
-          integrated, so I started learning and playing around with it because I
-          didn't have much experience working with it.
+        <p className="mb-6 p-6 bg-slate-700/50 border-l-4 border-blue-500 rounded-lg shadow-lg text-lg font-medium text-gray-200">
+          During my time at both companies, I had the opportunity to explore and
+          develop strong skills in both Cypress and Playwright. In one company,
+          Cypress was already integrated with a few tests, and as a beginner, I
+          found it quite easy to use. Later, at the next company I joined,
+          Cypress had around 2000 tests integrated. While Playwright wasn’t
+          fully integrated, I took the initiative to start learning and
+          experimenting with it, as I didn’t have much prior experience working
+          with it.
         </p>
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
