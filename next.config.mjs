@@ -1,14 +1,17 @@
 /** @type {import('next').NextConfig} */
+
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
   distDir: "dist",
-  basePath: "/e2e-testing-hub",
+  basePath: isProd ? "/e2e-testing-hub" : "",
   images: {
     unoptimized: true,
   },
   publicRuntimeConfig: {
-    basePath: "/e2e-testing-hub",
+    basePath: isProd ? "/e2e-testing-hub" : "",
   },
 };
 

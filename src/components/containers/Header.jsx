@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import getConfig from "next/config";
 
+const { publicRuntimeConfig } = getConfig();
+
 export default function Header() {
-  const { publicRuntimeConfig } = getConfig();
-  const basePath = publicRuntimeConfig.basePath || "";
+  const basePath = publicRuntimeConfig?.basePath || "";
 
   return (
     <header className="flex justify-center p-3 pl-0 pr-0 bg-gray-900 shadow-md">
