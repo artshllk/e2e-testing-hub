@@ -18,11 +18,30 @@ export default function WetVsDry() {
       </div>
 
       {/* Article Content */}
+      {/* Article Content */}
       <div className="text-left w-full max-w-lg md:max-w-2xl text-gray-300">
         <div className="text-lg leading-relaxed mb-6">
           <p>
-            When it comes to writing tests, you might hear two terms frequently:
-            WET (Write Everything Twice) and DRY (Don’t Repeat Yourself).
+            In the world of software development, you’ll often come across two
+            contrasting principles when writing tests: WET (Write Everything
+            Twice) and DRY (Don’t Repeat Yourself). These principles guide
+            developers on how to structure their code to enhance readability,
+            maintainability, and efficiency.
+          </p>
+
+          <p className="mt-3">
+            The DRY principle emphasizes the importance of avoiding repetition
+            in your codebase, ensuring that each piece of logic is defined only
+            once. You can dive deeper into the DRY principle in this{" "}
+            <a
+              href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself"
+              className="text-blue-500 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Don’t Repeat Yourself
+            </a>{" "}
+            Wikipedia article.
           </p>
 
           <p
