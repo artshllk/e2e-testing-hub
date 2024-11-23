@@ -215,7 +215,9 @@ cy.wait('@createUser').then((interception) => {
               can conditionally modify requests and responses based on runtime
               data, URL parameters, or other dynamic factors. This flexibility
               is especially useful for testing complex APIs with multiple
-              endpoints and variable parameters.
+              endpoints and variable parameters. Cypress does support network
+              interception, but its routing flexibility is more static compared
+              to Playwright's dynamic approach.
             </p>
 
             <div className="max-w-[23rem] lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
