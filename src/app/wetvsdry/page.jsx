@@ -239,6 +239,30 @@ export default function WetVsDry() {
           </p>
         </div>
       </div>
+
+      <div className="mt-8 flex justify-center">
+        <a
+          href="https://github.com/artshllk/e2e-testing-hub/fork"
+          className="flex items-center bg-gray-800 text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300 transform hover:bg-gray-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 mr-3"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            stroke="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M15.621 4.379a3 3 0 010 4.242l-8 8a3 3 0 01-4.242-4.242L10.414 7H3a1 1 0 110-2h7.414L3.379 1.379a3 3 0 114.242-4.242l8 8z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Edit on GitHub
+        </a>
+      </div>
     </div>
   );
 }

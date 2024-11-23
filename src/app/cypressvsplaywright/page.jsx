@@ -85,63 +85,245 @@ export default function CypressVsPlaywright() {
           terms of functionality, flexibility, and the use cases they support.
           Here are the key differences between the two:
         </p>
-        <ol className="list-decimal ml-6 space-y-4 mb-6">
+        <ol className="list-decimal ml-6 space-y-8 mb-6">
           <li>
-            <strong>Cross-Browser Support:</strong> Cypress primarily focuses on
-            testing within Chromium-based browsers (e.g., Chrome, Edge) but
-            supports Firefox and experimental WebKit. Playwright offers full
-            cross-browser support, including Chromium, Firefox, and WebKit
-            (Safari).
+            <strong className="text-lg">Cross-Browser Support:</strong>
+            <p>
+              <strong>Playwright</strong> offers full support for Chromium,
+              Firefox, and WebKit (Safari), allowing tests to run seamlessly
+              across these browsers. This makes it highly suitable for
+              applications that need to function correctly in various
+              environments.
+              <br />
+            </p>
+            <p className="mt-1">
+              <strong>Cypress</strong> primarily focuses on Chromium-based
+              browsers (like Chrome and Edge) and has limited support for
+              Firefox and experimental WebKit. While it can handle some
+              cross-browser testing, its capabilities are not as extensive as
+              Playwright's.
+            </p>
           </li>
 
           <li>
-            <strong>Supported Platforms:</strong> Cypress mainly focuses on
-            desktop web apps, while Playwright provides broader platform support
-            including mobile browser emulation (Android, iOS) and different
-            operating systems.
+            <strong className="text-lg">Supported Platforms:</strong>
+            <p>
+              While <strong>Cypress</strong> mainly targets desktop web
+              applications, <strong>Playwright</strong> supports a broader range
+              of platforms, including mobile browser emulation for Android and
+              iOS, along with cross-operating system compatibility.
+            </p>
           </li>
 
           <li>
-            <strong>Speed and Performance:</strong> Playwright is optimized for
-            parallelization and performance across multiple browsers, while
-            Cypress may face performance limitations in larger test suites or
-            different browser environments.
+            <strong className="text-lg">Speed and Performance:</strong>
+            <p>
+              <strong>Playwright</strong> is optimized for parallelization and
+              high performance across multiple browsers, significantly reducing
+              test suite execution times. <strong>Cypress</strong>, on the other
+              hand, may encounter limitations with larger test suites or diverse
+              browser environments.
+            </p>
           </li>
 
           <li>
-            <strong>Network Interception and Control:</strong> Playwright
-            provides deeper access to the network layer, making it more powerful
-            for advanced use cases compared to Cypress.
+            <strong className="text-lg">
+              Network Interception and Control:
+            </strong>
+            <p>
+              <strong>Playwright</strong> offers advanced network interception
+              capabilities, giving you granular control over API requests and
+              responses. This allows you to simulate complex network conditions,
+              mock responses, or even modify headers dynamically. Its deeper
+              integration with the browser enables actions like intercepting
+              requests before they reach the network stack. This makes
+              Playwright more suitable for testing intricate network scenarios.
+              <br />
+              On the other hand, while <strong>Cypress</strong> does provide
+              network control through <code>cy.intercept()</code>, its
+              capabilities are more limited. <strong>Cypress</strong> is
+              constrained by its browser-centric design, which restricts
+              fine-grained control over network traffic. Its intercepting
+              feature is useful for simpler use cases but doesn’t offer the same
+              flexibility as <strong>Playwright</strong>.
+            </p>
+            <p className="text-xltext-gray-200 font-semibold mt-4">
+              Playwright Example:
+            </p>
+            <p className="">
+              In this example, we intercept an API request and modify its
+              headers and method before it is sent to the server. Additionally,
+              if the request is not the target URL, we let it continue as
+              normal.
+            </p>
+            <div className="max-w-80 lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
+              <SyntaxHighlighter
+                language="javascript"
+                style={oneDark}
+                className="mb-6 rounded-md overflow-auto syntax-highlighter"
+              >
+                {`// Intercept and modify a request in Playwright
+page.on('route', route => {
+  // Check if the request URL matches the target pattern
+  if (route.request().url().includes('example.com')) {
+    route.continue({
+      method: 'GET', // Modify the HTTP method (e.g., from POST to GET)
+      headers: { 
+        ...route.request().headers(), // Retain existing headers
+        'X-Custom-Header': 'value' // Add a custom header
+      },
+    });
+  } else {
+    // Continue without modification for other requests
+    route.continue();
+  }
+});
+
+// Trigger the page load to initiate network requests
+await page.goto('https://your-website.com');`}
+              </SyntaxHighlighter>
+            </div>
+            <p className="">
+              Here, <strong>Playwright</strong> gives you control to modify
+              headers dynamically and change HTTP methods based on the request
+              URL. This approach is highly useful for simulating real-world
+              network failures, such as altering the request before it hits the
+              server.
+            </p>
+            <p className="text-xl text-gray-200 font-semibold mt-2">
+              Cypress Example:
+            </p>
+            <p className="">
+              In this simpler example, we modify the headers of a request using
+              <code>cy.intercept()</code>. While this is functional, it's
+              limited because Cypress can only modify the request after it has
+              been initiated.
+            </p>
+            <div className="max-w-80 lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
+              <SyntaxHighlighter
+                language="javascript"
+                style={oneDark}
+                className="mb-6 rounded-md overflow-auto syntax-highlighter"
+              >
+                {`// Intercept and modify a request in Cypress
+cy.intercept('GET', '**/example.com', (req) => {
+  req.headers['X-Custom-Header'] = 'value'; // Modify request headers
+  req.continue(); // Proceed with the request
+});
+
+// Visit the website that will trigger the network request
+cy.visit('https://your-website.com');`}
+              </SyntaxHighlighter>
+            </div>
+            <p className="">
+              <strong>Cypress</strong> intercepts the request after it has been
+              sent, which means you can't modify the request's method or block
+              it before it reaches the server. Although this is fine for many
+              cases, it lacks the flexibility Playwright offers for more
+              advanced use cases.
+            </p>
           </li>
 
           <li>
-            <strong>Multi-Page and Frame Support:</strong> Playwright supports
-            multi-page and iframe testing, while Cypress struggles with complex
-            page interactions.
+            <strong className="text-lg">Multi-Tab Handling</strong>
+            <p>
+              Cypress does not natively support handling multiple tabs due to
+              its architectural design. However, workarounds exist for scenarios
+              where applications open links in new tabs. For example, you can
+              modify the behavior to open links in the same tab:
+            </p>
+
+            <div className="max-w-80 lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
+              <SyntaxHighlighter
+                language="javascript"
+                style={oneDark}
+                className="mb-6 rounded-md overflow-auto syntax-highlighter"
+              >
+                {`it('Handling new tab', () => {
+  cy.get('#contact-us')
+    .invoke("removeAttr", "target")
+    .click(); // This will open the contact page in the same tab
+  cy.get("h1").should("have.text", "Contact");
+});`}
+              </SyntaxHighlighter>
+            </div>
+            <p>
+              In contrast, Playwright provides native support for handling
+              multiple pages and tabs, making it more efficient for testing
+              applications with complex navigation flows:
+            </p>
+
+            <div className="max-w-80 lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
+              <SyntaxHighlighter
+                language="javascript"
+                style={oneDark}
+                className="mb-6 rounded-md overflow-auto syntax-highlighter"
+              >
+                {`test('Handling new tab', async ({ page, context }) => {
+  await page.goto('https://example.com');
+  
+  // Click the link that opens a new tab
+  const [newTab] = await Promise.all([
+    context.waitForEvent('page'), // Wait for the new tab to open
+    page.click('#open-new-tab') // Trigger the new tab opening
+  ]);
+
+  await newTab.waitForLoadState(); // Ensure the new tab is loaded
+  await expect(newTab).toHaveTitle('Expected New Tab Title'); // Verify the title
+});`}
+              </SyntaxHighlighter>
+            </div>
           </li>
 
           <li>
-            <strong>Debugging and Test Writing:</strong> Cypress allows you to
-            view snapshots at each step, making debugging easier. Playwright
-            provides better debugging for complex cases.
+            <strong className="text-lg">Debugging and Test Writing:</strong>
+            <p>
+              <strong>Cypress</strong> makes debugging easier with its
+              interactive Test Runner. You can hover over each step in your test
+              to see exactly what happened, thanks to features like time-travel
+              snapshots. The <code>.debug()</code> command is also handy for
+              pausing tests and inspecting the current state.
+            </p>
+            <p className="mt-1">
+              {" "}
+              <strong>Playwright</strong>, though, really shines when you’re
+              dealing with more complex debugging. It supports async/await for
+              better control over your test flow and integrates seamlessly with
+              tools like Visual Studio Code, where you can set breakpoints and
+              inspect the DOM directly. Features like the Playwright Inspector
+              and trace viewer give you even more ways to troubleshoot tricky
+              scenarios.
+            </p>
           </li>
 
           <li>
-            <strong>Community:</strong> Cypress has a larger community, making
-            it easier to find solutions. Playwright's community is growing but
-            newer in comparison.
+            <strong className="text-lg">Community:</strong>
+            <p>
+              Cypress has a well-established and larger community, making it
+              easier to find resources, plugins, and troubleshooting help.
+              Playwright’s community, while smaller, is growing rapidly with
+              robust support from its development team.
+            </p>
           </li>
 
           <li>
-            <strong>Test Isolation:</strong> Playwright provides better test
-            isolation while Cypress requires more effort to manage shared state
-            between tests.
+            <strong className="text-lg">Test Isolation:</strong>
+            <p>
+              Playwright offers excellent test isolation by design, allowing
+              tests to run independently without shared state. Cypress requires
+              additional effort to manage shared state between tests, which can
+              complicate test suites.
+            </p>
           </li>
 
           <li>
-            <strong>CI/CD Integration:</strong> Both tools integrate well into
-            CI/CD pipelines but Playwright's cross-browser support makes it more
-            flexible for larger test suites.
+            <strong className="text-lg">CI/CD Integration:</strong>
+            <p>
+              Both tools integrate seamlessly into CI/CD pipelines. However,
+              Playwright’s superior cross-browser support makes it a better
+              choice for diverse and large-scale test suites in continuous
+              integration environments.
+            </p>
           </li>
         </ol>
 
@@ -206,10 +388,11 @@ export default function CypressVsPlaywright() {
           Powerful Nested Selectors
         </h2>
         <p className="mb-2">
-          One area where Cypress excels is handling deeply nested selectors.
-          Using
-          <code>cy.within()</code>, Cypress lets you easily scope commands to a
-          specific element, making it easier to interact with complex layouts:
+          One area where <strong>Cypress</strong> excels is handling deeply
+          nested selectors. Using
+          <code>cy.within()</code>, <strong>Cypress</strong> lets you easily
+          scope commands to a specific element, making it easier to interact
+          with complex layouts:
         </p>
 
         <div className="max-w-80 lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
@@ -311,6 +494,30 @@ export default function CypressVsPlaywright() {
           cross-browser testing, multi-page interactions, or deep network
           control are required.
         </p>
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <a
+          href="https://github.com/artshllk/e2e-testing-hub/fork"
+          className="flex items-center bg-gray-800 text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300 transform hover:bg-gray-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 mr-3"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            stroke="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M15.621 4.379a3 3 0 010 4.242l-8 8a3 3 0 01-4.242-4.242L10.414 7H3a1 1 0 110-2h7.414L3.379 1.379a3 3 0 114.242-4.242l8 8z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Edit on GitHub
+        </a>
       </div>
     </div>
   );
