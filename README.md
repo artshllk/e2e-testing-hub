@@ -1,6 +1,8 @@
 # Articles Website
 
-A simple **Next.js** website showcasing three articles about **end-to-end (E2E) testing**, with a modern, responsive design using **Tailwind CSS**.
+Articles I wrote about end-to-end testing, based on real work with Cypress and Playwright.
+
+Read them here: https://artshllk.github.io/e2e-testing-hub/
 
 ## Features
 
