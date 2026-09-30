@@ -24,7 +24,6 @@ const data = [
   { month: "Jul 2024", Cypress: 5217909, Playwright: 6446085 },
   { month: "Aug 2024", Cypress: 5341595, Playwright: 6756287 },
   { month: "Sep 2024", Cypress: 5347643, Playwright: 7909955 },
-  { month: "Oct 2024", Cypress: 5522848, Playwright: 10278986 },
 ];
 
 export function DownloadsChart() {
@@ -42,7 +41,7 @@ export function DownloadsChart() {
           Downloads Comparison
         </CardTitle>
         <CardDescription className="text-sm text-slate-400">
-          Monthly downloads comparison between Cypress and Playwright (2024)
+          Monthly npm downloads of Cypress and Playwright, January to September 2024. Source: npm
         </CardDescription>
       </CardHeader>
       <CardContent>

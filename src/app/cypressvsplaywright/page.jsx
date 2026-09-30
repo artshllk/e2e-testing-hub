@@ -20,15 +20,14 @@ export default function CypressVsPlaywright() {
       {/* Article Content */}
       <div className="max-w-lg md:max-w-2xl font-medium text-[1rem] md:text-[1.1rem] leading-[26px] md:leading-[28px] text-gray-300">
         <p className="mb-6">
-          When I first started my journey in test automation, my toolset
-          primarily was only Cypress. I started by writing very basic simple
-          tests without knowing best practices to writing really complex test
-          cases. During that time I was curious also about JavaScript and was
-          learning on that part. After creating fundamental skills in JS, I had
-          questions about Cypress like what you can test, how it works, and
-          other questions. Cypress is known for its easy-to-use syntax and ideal
-          for end-to-end testing. While Playwright feels similar, for a newcomer
-          in this world, from my perspective, Cypress is easier than Playwright.
+          When I started in test automation, Cypress was the only tool I used.
+          At first I wrote very simple tests without knowing the best
+          practices, and over time I moved on to more complex test cases. At the
+          same time I was learning JavaScript. Once I had the basics of JS, I
+          started asking more questions about Cypress: what you can test with
+          it, how it works, and so on. Cypress is known for its easy syntax and
+          it works well for end-to-end testing. Playwright feels similar, but
+          for someone new to testing, I think Cypress is easier to start with.
         </p>
         <p className="mb-6">
           In this article, we'll compare Cypress and Playwright, two popular
@@ -93,22 +92,26 @@ export default function CypressVsPlaywright() {
               (Safari), offering extensive cross-browser testing capabilities.
             </p>
             <p className="mt-1">
-              <strong>Cypress</strong>, while strong in Chromium-based browsers
-              like Chrome and Edge, fully supports Firefox. However, WebKit
-              support remains experimental. Cross-browser compatibility in
-              Cypress requires the browsers to be installed locally, a condition
-              that applies to Playwright as well.
+              <strong>Cypress</strong> works with Chrome, Edge, Electron, and
+              Firefox. WebKit (Safari) support is still experimental. Cypress
+              runs tests in the browsers that are already installed on your
+              machine. Playwright works differently here: it downloads its own
+              browsers with <code>npx playwright install</code>, so every
+              machine runs the tests on the same browser versions.
             </p>
           </li>
 
           <li>
             <strong className="text-lg">Supported Platforms:</strong>
             <p>
-              <strong>Playwright</strong> supports mobile browser emulation for
-              Android and iOS, alongside cross-operating system compatibility.{" "}
-              <strong>Cypress</strong> also supports mobile emulation but
-              requires manual configuration of viewport sizes rather than using
-              predefined device names.
+              <strong>Playwright</strong> can emulate mobile browsers for
+              Android and iOS, and it runs on Windows, macOS, and Linux. It has
+              ready device profiles, for example{" "}
+              <code>devices['iPhone 13']</code>, that set the screen size, user
+              agent, and touch support.{" "}
+              <strong>Cypress</strong> also has ready device names, for example{" "}
+              <code>cy.viewport('iphone-x')</code>, but they only change the
+              screen size.
             </p>
           </li>
 
@@ -117,11 +120,11 @@ export default function CypressVsPlaywright() {
               Performance and Parallelization:
             </strong>
             <p>
-              <strong>Playwright</strong> excels in parallel test execution
-              across multiple browsers, reducing test suite runtimes
-              effectively. <strong>Cypress</strong> offers parallelization
-              through cloud-based CI/CD pipelines. Local parallelization is
-              supported via plugins.
+              <strong>Playwright</strong> runs tests in parallel by default,
+              using several workers on one machine. This makes big test suites
+              much faster. <strong>Cypress</strong> can run tests in parallel
+              across several CI machines with Cypress Cloud. To run tests in
+              parallel on one machine, you need a third-party plugin.
             </p>
           </li>
 
@@ -140,11 +143,10 @@ export default function CypressVsPlaywright() {
               <strong>Cypress</strong>: Allows request interception with{" "}
               <code>cy.intercept()</code> and supports pre-request modifications
               like altering headers, methods, or mocking responses. Cypress also
-              enables redirecting requests to mock services. However, Playwright
-              may offer slightly more granular control in some cases, especially
-              for advanced scenarios involving dynamic routing. I will discuss
-              this advanced control and dynamic routing in more detail in the
-              next section.
+              enables redirecting requests to mock services. For most cases,
+              both tools can do the same things here. The main difference is
+              the code style: Playwright uses async/await, and Cypress uses its
+              own command chain.
             </p>
 
             <div className="max-w-[23rem] lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
@@ -153,11 +155,9 @@ export default function CypressVsPlaywright() {
                 style={oneDark}
                 className="mb-6 rounded-md overflow-auto syntax-highlighter"
               >
-                {`// Playwright: Network Interception
+                {`// Playwright, example 1: change the request before it reaches the server
 await page.route('**/api/v1/users', (route) => {
-  // Modify the request before it reaches the server
   route.continue({
-    method: 'POST',
     headers: {
       ...route.request().headers(),
       'x-custom-header': 'PlaywrightIntercept',
@@ -165,7 +165,7 @@ await page.route('**/api/v1/users', (route) => {
   });
 });
 
-// Mocking a response directly
+// Playwright, example 2: return a mocked response
 await page.route('**/api/v1/users', (route) => {
   route.fulfill({
     status: 200,
@@ -174,29 +174,19 @@ await page.route('**/api/v1/users', (route) => {
   });
 });
 
-// Cypress: Network Interception
-cy.intercept(
-  {
-    method: 'GET', // Match specific method
-    url: '**/api/v1/users', // Match the request URL
-  },
-  (req) => {
-    // Modify the request before sending
-    req.headers['x-custom-header'] = 'CypressIntercept';
-    req.method = 'POST';
+// Cypress, example 1: change the request before it reaches the server
+cy.intercept('GET', '**/api/v1/users', (req) => {
+  req.headers['x-custom-header'] = 'CypressIntercept';
+});
 
-    // Mock response
-    req.reply({
-      statusCode: 200,
-      body: { success: true, message: 'Mocked Response' },
-    });
-  }
-);
+// Cypress, example 2: return a mocked response and check it
+cy.intercept('GET', '**/api/v1/users', {
+  statusCode: 200,
+  body: { success: true, message: 'Mocked Response' },
+}).as('getUsers');
 
-// Verify interception
-cy.intercept('POST', '**/api/v1/users').as('createUser');
 cy.visit('/users');
-cy.wait('@createUser').then((interception) => {
+cy.wait('@getUsers').then((interception) => {
   expect(interception.response.statusCode).to.equal(200);
   expect(interception.response.body.message).to.equal('Mocked Response');
 });
@@ -207,17 +197,16 @@ cy.wait('@createUser').then((interception) => {
 
           <li>
             <strong className="text-lg">
-              Dynamic Request Routing and Granular Control:
+              Changing Requests Based on Conditions:
             </strong>
             <p>
-              In some cases, Playwright offers more granular control, especially
-              when dealing with advanced scenarios such as dynamic routing. You
-              can conditionally modify requests and responses based on runtime
-              data, URL parameters, or other dynamic factors. This flexibility
-              is especially useful for testing complex APIs with multiple
-              endpoints and variable parameters. Cypress does support network
-              interception, but its routing flexibility is more static compared
-              to Playwright's dynamic approach.
+              Sometimes you want to change a request or a response only in some
+              cases, for example based on the URL, a query parameter, or the
+              request body. Both tools can do this. In Playwright you check the
+              request inside <code>page.route()</code>. In Cypress you do the
+              same inside the <code>cy.intercept()</code> handler, which gets
+              the full request. The result is the same. It mostly comes down to
+              which code style your team prefers.
             </p>
 
             <div className="max-w-[23rem] lg:max-w-full 2xl:max-w-full md:max-w-full sm:max-w-full">
@@ -226,58 +215,42 @@ cy.wait('@createUser').then((interception) => {
                 style={oneDark}
                 className="mb-6 rounded-md overflow-auto syntax-highlighter"
               >
-                {`// Playwright: Dynamic Request Routing and Advanced Interception
+                {`// Playwright: change the request only for one user
 await page.route('**/api/v1/users/**', (route, request) => {
-  // Conditionally modify request based on dynamic URL parameters
   if (request.url().includes('specificUserId')) {
     route.continue({
-      method: 'GET',
-      headers: {
-        ...request.headers(),
-        'x-user-id': 'specialUser123'
-      }
+      headers: { ...request.headers(), 'x-user-id': 'specialUser123' },
     });
   } else {
-    // Handle generic requests
     route.continue();
   }
 });
 
-// Mocking a response dynamically
+// Cypress: the same thing
+cy.intercept('GET', '**/api/v1/users/**', (req) => {
+  if (req.url.includes('specificUserId')) {
+    req.headers['x-user-id'] = 'specialUser123';
+  }
+  // Other requests go to the server without changes
+});
+
+// Playwright: return a different mock based on the URL
 await page.route('**/api/v1/users/**', (route) => {
+  const isSpecial = route.request().url().includes('special');
   route.fulfill({
     status: 200,
     contentType: 'application/json',
-    body: JSON.stringify({
-      success: true,
-      message: route.request().url().includes('special') ? 'Special User Mock' : 'Generic Mock'
-    }),
+    body: JSON.stringify({ message: isSpecial ? 'Special User Mock' : 'Generic Mock' }),
   });
 });
 
-// Cypress: Network Interception (with static routing)
-cy.intercept(
-  {
-    method: 'GET',
-    url: '**/api/v1/users',
-  },
-  (req) => {
-    // Modify request headers and mock response
-    req.headers['x-custom-header'] = 'CypressIntercept';
-    req.method = 'POST';
-    req.reply({
-      statusCode: 200,
-      body: { success: true, message: 'Mocked Response' },
-    });
-  }
-);
-
-// Cypress allows basic conditional interception, but lacks the same dynamic routing flexibility as Playwright
-cy.intercept('POST', '**/api/v1/users').as('createUser');
-cy.visit('/users');
-cy.wait('@createUser').then((interception) => {
-  expect(interception.response.statusCode).to.equal(200);
-  expect(interception.response.body.message).to.equal('Mocked Response');
+// Cypress: the same thing
+cy.intercept('GET', '**/api/v1/users/**', (req) => {
+  const isSpecial = req.url.includes('special');
+  req.reply({
+    statusCode: 200,
+    body: { message: isSpecial ? 'Special User Mock' : 'Generic Mock' },
+  });
 });
 `}
               </SyntaxHighlighter>
@@ -310,7 +283,7 @@ const [newPage] = await Promise.all([
 
 // Interact with the new tab
 await newPage.waitForLoadState();
-await newPage.type('#input', 'Playwright multi-tab test');
+await newPage.fill('#input', 'Playwright multi-tab test');
 await newPage.click('button.submit');
 
 // Switch back to the original tab
@@ -373,9 +346,10 @@ cy.get('button.submit').click();
           Debugging
         </h2>
         <p className="mb-6">
-          Debugging in Cypress and Playwright offers different approaches. In
-          Cypress, you’re limited to using <code className="">.pause()</code> or
-          <code>.debug()</code> on selected elements. When you use
+          Debugging in Cypress and Playwright works in different ways. In
+          Cypress, the main tools are <code className="">.pause()</code>,{" "}
+          <code>.debug()</code>, and the time-travel snapshots in the Test
+          Runner. When you use
           <code>.debug()</code>, Cypress will freeze the test and print the
           selector results in the Chrome console. You can then hover over the
           HTML element in Chrome to check if your selector is working.
@@ -394,8 +368,8 @@ cy.get('button.submit').click();
         </p>
 
         <p className="mb-6">
-          Another option is to use a third-party library like Promisify, which
-          converts Cypress’s async functionality into Promises. This allows you
+          Another option is to use a third-party library that turns Cypress
+          commands into Promises. This allows you
           to add debugger statements after await to inspect variables that have
           been awaited. The problem with this approach is that Cypress wasn’t
           designed to work with async/await, so you may run into issues. I tried
@@ -430,11 +404,10 @@ cy.get('button.submit').click();
           powerful ways to select elements on a page. While they share many
           similarities, the key difference lies in how selectors are managed and
           how each framework approaches deeply nested structures.
-          <strong>Playwright</strong> provides native support for various
-          selectors such as CSS, XPath, ARIA roles, and text-based queries,
-          which offers developers more flexibility and power. On the other hand,{" "}
-          <strong>Cypress</strong> can achieve similar results using the
-          open-source{" "}
+          <strong>Playwright</strong> has built-in support for CSS, XPath, text,
+          and ARIA role selectors. <strong>Cypress</strong> has CSS selectors
+          and text search with <code>cy.contains()</code> built in. For role and
+          label selectors, you can add the open-source{" "}
           <a
             href="https://www.npmjs.com/package/@testing-library/cypress"
             target="_blank"
@@ -443,8 +416,7 @@ cy.get('button.submit').click();
           >
             Testing Library
           </a>{" "}
-          plugin, requiring additional setup but providing comparable
-          functionality.
+          plugin. It needs a little setup, but then it works in a similar way.
         </p>
 
         <h3 className="text-xl font-semibold mb-2">Powerful Selectors</h3>
@@ -476,17 +448,19 @@ cy.findByRole('button', { name: /submit/i }).click();
 // Using Testing Library's findByText
 cy.findByText('Submit').click();
 
+// Built-in Cypress text search (no plugin needed)
+cy.contains('button', 'Submit').click();
+
 // Basic Cypress CSS Selector
 cy.get('button.submit-btn').click();`}
           </SyntaxHighlighter>
         </div>
 
         <p className="mb-2">
-          <strong>Playwright</strong> natively supports a variety of selectors,
-          including CSS, text, XPath, and ARIA roles. In contrast,{" "}
-          <strong>Cypress</strong> requires the use of the Testing Library for
-          role, label, and text-based selectors, but once set up, the
-          functionality is comparable.
+          In short, <strong>Playwright</strong> has CSS, text, XPath, and ARIA
+          role selectors built in. <strong>Cypress</strong> has CSS and text
+          built in, and needs Testing Library for role and label selectors.
+          After that setup, both work in a similar way.
         </p>
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />

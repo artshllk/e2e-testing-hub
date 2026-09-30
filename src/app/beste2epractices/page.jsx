@@ -75,15 +75,15 @@ export default function E2EPractices() {
 
           <ul className="list-disc pl-8 mb-6 space-y-3">
             <li>
-              <strong>What functionality you are testing</strong> — define the
+              <strong>What functionality you are testing:</strong> define the
               specific behavior or workflow.
             </li>
             <li>
-              <strong>Your expectations</strong> — know what the desired outcome
+              <strong>Your expectations:</strong> know what the desired outcome
               should be.
             </li>
             <li>
-              <strong>The test boundaries</strong> — determine the scope of the
+              <strong>The test boundaries:</strong> decide the scope of the
               test to avoid unnecessary interactions.
             </li>
           </ul>
@@ -215,6 +215,12 @@ const login = ({ username, password }: UserCredentials) => {
           approach leverages the framework’s functionality, making tests more
           robust and less prone to breaking due to minor UI changes.
         </p>
+        <p className="text-lg mb-6">
+          One small note: <code>.contains()</code> clicks only the first item
+          it finds. The first example clicks every matching item. If you really
+          need to click all of them, you still need a loop, but most tests only
+          need one item.
+        </p>
 
         <hr className="border-gray-600 w-full max-w-lg md:max-w-2xl my-8" />
 
@@ -253,15 +259,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      
+        uses: actions/checkout@v4
+
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run E2E Tests
         run: npm run test:e2e`}
@@ -292,9 +298,11 @@ jobs:
 
         <ul className="list-disc pl-8 mb-6">
           <li>
-            <strong>Avoid Overlapping Tests:</strong> Ensure that tests do not
-            interfere with each other by isolating their execution context. Use
-            before and after hooks to set up and tear down test data or states.
+            <strong>Avoid Overlapping Tests:</strong> Make sure tests do not
+            affect each other. Set up the data each test needs in a{" "}
+            <code>beforeEach</code> hook. It is better to reset the state before
+            a test than to clean up after it, because cleanup code in an after
+            hook does not run if the test run stops in the middle.
           </li>
           <li>
             <strong>Keep Tests Small and Focused:</strong> Write tests that

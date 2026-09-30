@@ -75,10 +75,6 @@ export default function WetVsDry() {
               and easy to understand, especially for beginners.
             </li>
             <li>
-              <strong>Isolation:</strong> Each test is independent, meaning you
-              don’t need to worry about side effects between tests.
-            </li>
-            <li>
               <strong>Quick to write:</strong> In smaller codebases, or when
               writing simple tests, you may find WET tests easier and faster to
               implement.
@@ -91,8 +87,10 @@ export default function WetVsDry() {
             style={oneDark}
             className="mb-6 rounded-md text-sm shadow-md overflow-auto syntax-highlighter"
           >
-            {`describe('Login Tests - WET', () => {
-  test('should allow user to login with valid credentials', async () => {
+            {`import { test, expect } from '@playwright/test';
+
+test.describe('Login Tests - WET', () => {
+  test('should allow user to login with valid credentials', async ({ page }) => {
     await page.goto('https://example.com/login');
     await page.fill('input[name="username"]', 'user1');
     await page.fill('input[name="password"]', 'password1');
@@ -100,12 +98,12 @@ export default function WetVsDry() {
     await expect(page).toHaveURL('https://example.com/dashboard');
   });
 
-  test('should show an error with invalid credentials', async () => {
+  test('should show an error with invalid credentials', async ({ page }) => {
     await page.goto('https://example.com/login');
     await page.fill('input[name="username"]', 'user1');
     await page.fill('input[name="password"]', 'wrongpassword');
     await page.click('button[type="submit"]');
-    await expect(page).toHaveText('Invalid username or password');
+    await expect(page.getByText('Invalid username or password')).toBeVisible();
   });
 });`}
           </SyntaxHighlighter>
@@ -150,22 +148,24 @@ export default function WetVsDry() {
             style={oneDark}
             className="mb-6 rounded-md overflow-auto shadow-md syntax-highlighter"
           >
-            {`describe('Login Tests - DRY', () => {
-  const login = async (username, password) => {
+            {`import { test, expect } from '@playwright/test';
+
+test.describe('Login Tests - DRY', () => {
+  const login = async (page, username, password) => {
     await page.goto('https://example.com/login');
     await page.fill('input[name="username"]', username);
     await page.fill('input[name="password"]', password);
     await page.click('button[type="submit"]');
   };
 
-  test('should allow user to login with valid credentials', async () => {
-    await login('user1', 'password1');
+  test('should allow user to login with valid credentials', async ({ page }) => {
+    await login(page, 'user1', 'password1');
     await expect(page).toHaveURL('https://example.com/dashboard');
   });
 
-  test('should show an error with invalid credentials', async () => {
-    await login('user1', 'wrongpassword');
-    await expect(page).toHaveText('Invalid username or password');
+  test('should show an error with invalid credentials', async ({ page }) => {
+    await login(page, 'user1', 'wrongpassword');
+    await expect(page.getByText('Invalid username or password')).toBeVisible();
   });
 });`}
           </SyntaxHighlighter>
